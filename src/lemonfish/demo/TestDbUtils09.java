@@ -38,6 +38,9 @@ public class TestDbUtils09 {
             // 3.4 进行回滚
             connection.rollback();
             throwables.printStackTrace();
+        } finally {
+            // 记住关闭
+            connection.close();
         }
     }
 }

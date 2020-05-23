@@ -6,7 +6,6 @@ import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -82,5 +81,26 @@ public class BaseDAO<T> {
             e.printStackTrace();
         }
         return null;
+    }
+
+    /**
+     * 批量操作 增删改
+     * @param sql
+     * @param params
+     * @return
+     */
+    public int[] batch(String sql,Object[][] params){
+
+        int[] batch = new int[0];
+        try {
+            batch = qr.batch(
+                    sql,
+                    params
+            );
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return batch;
     }
 }
